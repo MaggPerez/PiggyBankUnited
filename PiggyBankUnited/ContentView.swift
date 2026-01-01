@@ -11,31 +11,42 @@ import FirebaseAuth
 
 
 struct ContentView: View {
+    @StateObject private var authManager = FirebaseAuthManager()
     @State private var showSignUpView = false
     
     var body: some View {
-        if showSignUpView {
-            //sign up
-            SignUpView(showSignUpView: $showSignUpView)
-        } else {
-            //login
-            LoginView(showSignUpView: $showSignUpView)
+        if authManager.isAuthenticated {
+            //dashboard view
+            DashboardView(showDashboard: $authManager.isAuthenticated)
+        }
+        else if showSignUpView {
+            //sign up view
+            SignUpView(showSignUpView: $showSignUpView, authManager: authManager)
+        }
+        else {
+            //login view
+            LoginView(showSignUpView: $showSignUpView, authManager: authManager)
         }
     }
 }
 
+
+/**
+ Sign in View
+ */
 struct LoginView: View {
     @Binding var showSignUpView: Bool
+    @ObservedObject var authManager: FirebaseAuthManager
+    
     @State private var email: String = ""
     @State private var password: String = ""
-    @StateObject private var firebaseInstance = FirebaseAuthManager()
-    
+
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("PiggyBankUnited")
+            Text("Piggy Bank United")
                 .font(.largeTitle)
                 .bold()
             
@@ -65,12 +76,14 @@ struct LoginView: View {
                             .stroke(Color(.systemGray4), lineWidth: 1)
                     )
                 
-                //signin button
-                Button("Signin") {
-                    firebaseInstance.signIn(email: email, password: password)
+                //sign in button
+                Button("Sign in") {
+                    authManager.signIn(email: email, password: password)
                 }
                 .buttonStyle(.borderedProminent)
                 
+                
+                //don't have an account
                 HStack{
                     Text("Don't have an account?")
                     
@@ -78,11 +91,7 @@ struct LoginView: View {
                         showSignUpView = true
                     }
                 }
-                
-                
-                
-                
-                
+                       
             }
             .textFieldStyle(.roundedBorder)
         }
@@ -90,14 +99,16 @@ struct LoginView: View {
     }
 }
 
-
+/**
+ Sign up view
+ */
 struct SignUpView: View {
     @Binding var showSignUpView: Bool
+    @ObservedObject var authManager: FirebaseAuthManager
+    
     @State private var email: String = ""
     @State private var password: String = ""
-    @StateObject private var firebaseInstance = FirebaseAuthManager()
-    
-    
+
     var body: some View {
         
         VStack {
@@ -134,9 +145,9 @@ struct SignUpView: View {
                             .stroke(Color(.systemGray4), lineWidth: 1)
                     )
                 
-                //signin button
+                //sign up button
                 Button("Sign up") {
-                    firebaseInstance.signUp(email: email, password: password)
+                    authManager.signUp(email: email, password: password)
                 }
                 .buttonStyle(.borderedProminent)
                 
