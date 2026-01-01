@@ -1,0 +1,635 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		965FDE9B2F0626D500361342 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 965FDE9A2F0626D500361342 /* FirebaseAnalytics */; };
+		965FDE9D2F0626D500361342 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 965FDE9C2F0626D500361342 /* FirebaseAuth */; };
+		965FDE9F2F0626D500361342 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 965FDE9E2F0626D500361342 /* FirebaseCore */; };
+		965FDEA12F0626D500361342 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 965FDEA02F0626D500361342 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		965FDE7B2F061E5900361342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965FDE652F061E5800361342 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 965FDE6C2F061E5800361342;
+			remoteInfo = PiggyBankUnited;
+		};
+		965FDE852F061E5900361342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965FDE652F061E5800361342 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 965FDE6C2F061E5800361342;
+			remoteInfo = PiggyBankUnited;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		965FDE6D2F061E5800361342 /* PiggyBankUnited.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBankUnited.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		965FDE7A2F061E5900361342 /* PiggyBankUnitedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PiggyBankUnitedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		965FDE842F061E5900361342 /* PiggyBankUnitedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PiggyBankUnitedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		965FDE6F2F061E5800361342 /* PiggyBankUnited */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PiggyBankUnited;
+			sourceTree = "<group>";
+		};
+		965FDE7D2F061E5900361342 /* PiggyBankUnitedTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PiggyBankUnitedTests;
+			sourceTree = "<group>";
+		};
+		965FDE872F061E5900361342 /* PiggyBankUnitedUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PiggyBankUnitedUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		965FDE6A2F061E5800361342 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				965FDE9B2F0626D500361342 /* FirebaseAnalytics in Frameworks */,
+				965FDEA12F0626D500361342 /* FirebaseFirestore in Frameworks */,
+				965FDE9F2F0626D500361342 /* FirebaseCore in Frameworks */,
+				965FDE9D2F0626D500361342 /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		965FDE772F061E5900361342 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		965FDE812F061E5900361342 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		965FDE642F061E5800361342 = {
+			isa = PBXGroup;
+			children = (
+				965FDE6F2F061E5800361342 /* PiggyBankUnited */,
+				965FDE7D2F061E5900361342 /* PiggyBankUnitedTests */,
+				965FDE872F061E5900361342 /* PiggyBankUnitedUITests */,
+				965FDE6E2F061E5800361342 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		965FDE6E2F061E5800361342 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				965FDE6D2F061E5800361342 /* PiggyBankUnited.app */,
+				965FDE7A2F061E5900361342 /* PiggyBankUnitedTests.xctest */,
+				965FDE842F061E5900361342 /* PiggyBankUnitedUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		965FDE6C2F061E5800361342 /* PiggyBankUnited */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 965FDE8E2F061E5900361342 /* Build configuration list for PBXNativeTarget "PiggyBankUnited" */;
+			buildPhases = (
+				965FDE692F061E5800361342 /* Sources */,
+				965FDE6A2F061E5800361342 /* Frameworks */,
+				965FDE6B2F061E5800361342 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				965FDE6F2F061E5800361342 /* PiggyBankUnited */,
+			);
+			name = PiggyBankUnited;
+			packageProductDependencies = (
+				965FDE9A2F0626D500361342 /* FirebaseAnalytics */,
+				965FDE9C2F0626D500361342 /* FirebaseAuth */,
+				965FDE9E2F0626D500361342 /* FirebaseCore */,
+				965FDEA02F0626D500361342 /* FirebaseFirestore */,
+			);
+			productName = PiggyBankUnited;
+			productReference = 965FDE6D2F061E5800361342 /* PiggyBankUnited.app */;
+			productType = "com.apple.product-type.application";
+		};
+		965FDE792F061E5900361342 /* PiggyBankUnitedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 965FDE912F061E5900361342 /* Build configuration list for PBXNativeTarget "PiggyBankUnitedTests" */;
+			buildPhases = (
+				965FDE762F061E5900361342 /* Sources */,
+				965FDE772F061E5900361342 /* Frameworks */,
+				965FDE782F061E5900361342 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				965FDE7C2F061E5900361342 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				965FDE7D2F061E5900361342 /* PiggyBankUnitedTests */,
+			);
+			name = PiggyBankUnitedTests;
+			packageProductDependencies = (
+			);
+			productName = PiggyBankUnitedTests;
+			productReference = 965FDE7A2F061E5900361342 /* PiggyBankUnitedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		965FDE832F061E5900361342 /* PiggyBankUnitedUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 965FDE942F061E5900361342 /* Build configuration list for PBXNativeTarget "PiggyBankUnitedUITests" */;
+			buildPhases = (
+				965FDE802F061E5900361342 /* Sources */,
+				965FDE812F061E5900361342 /* Frameworks */,
+				965FDE822F061E5900361342 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				965FDE862F061E5900361342 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				965FDE872F061E5900361342 /* PiggyBankUnitedUITests */,
+			);
+			name = PiggyBankUnitedUITests;
+			packageProductDependencies = (
+			);
+			productName = PiggyBankUnitedUITests;
+			productReference = 965FDE842F061E5900361342 /* PiggyBankUnitedUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		965FDE652F061E5800361342 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					965FDE6C2F061E5800361342 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					965FDE792F061E5900361342 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 965FDE6C2F061E5800361342;
+					};
+					965FDE832F061E5900361342 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 965FDE6C2F061E5800361342;
+					};
+				};
+			};
+			buildConfigurationList = 965FDE682F061E5800361342 /* Build configuration list for PBXProject "PiggyBankUnited" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 965FDE642F061E5800361342;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				965FDE992F0626D500361342 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 965FDE6E2F061E5800361342 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				965FDE6C2F061E5800361342 /* PiggyBankUnited */,
+				965FDE792F061E5900361342 /* PiggyBankUnitedTests */,
+				965FDE832F061E5900361342 /* PiggyBankUnitedUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		965FDE6B2F061E5800361342 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		965FDE782F061E5900361342 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		965FDE822F061E5900361342 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		965FDE692F061E5800361342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		965FDE762F061E5900361342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		965FDE802F061E5900361342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		965FDE7C2F061E5900361342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 965FDE6C2F061E5800361342 /* PiggyBankUnited */;
+			targetProxy = 965FDE7B2F061E5900361342 /* PBXContainerItemProxy */;
+		};
+		965FDE862F061E5900361342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 965FDE6C2F061E5800361342 /* PiggyBankUnited */;
+			targetProxy = 965FDE852F061E5900361342 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		965FDE8C2F061E5900361342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		965FDE8D2F061E5900361342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = B9T3566J33;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		965FDE8F2F061E5900361342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = project.maggy.PiggyBankUnited;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		965FDE902F061E5900361342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = project.maggy.PiggyBankUnited;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		965FDE922F061E5900361342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = project.maggy.PiggyBankUnitedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PiggyBankUnited.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PiggyBankUnited";
+			};
+			name = Debug;
+		};
+		965FDE932F061E5900361342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = project.maggy.PiggyBankUnitedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PiggyBankUnited.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PiggyBankUnited";
+			};
+			name = Release;
+		};
+		965FDE952F061E5900361342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = project.maggy.PiggyBankUnitedUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PiggyBankUnited;
+			};
+			name = Debug;
+		};
+		965FDE962F061E5900361342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9T3566J33;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = project.maggy.PiggyBankUnitedUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PiggyBankUnited;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		965FDE682F061E5800361342 /* Build configuration list for PBXProject "PiggyBankUnited" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965FDE8C2F061E5900361342 /* Debug */,
+				965FDE8D2F061E5900361342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		965FDE8E2F061E5900361342 /* Build configuration list for PBXNativeTarget "PiggyBankUnited" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965FDE8F2F061E5900361342 /* Debug */,
+				965FDE902F061E5900361342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		965FDE912F061E5900361342 /* Build configuration list for PBXNativeTarget "PiggyBankUnitedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965FDE922F061E5900361342 /* Debug */,
+				965FDE932F061E5900361342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		965FDE942F061E5900361342 /* Build configuration list for PBXNativeTarget "PiggyBankUnitedUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965FDE952F061E5900361342 /* Debug */,
+				965FDE962F061E5900361342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		965FDE992F0626D500361342 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		965FDE9A2F0626D500361342 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 965FDE992F0626D500361342 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		965FDE9C2F0626D500361342 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 965FDE992F0626D500361342 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		965FDE9E2F0626D500361342 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 965FDE992F0626D500361342 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		965FDEA02F0626D500361342 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 965FDE992F0626D500361342 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 965FDE652F061E5800361342 /* Project object */;
+}
