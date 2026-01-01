@@ -12,16 +12,21 @@ struct DashboardView: View {
     @ObservedObject var firebaseManager = FirebaseAuthManager()
     
     var body: some View {
-        VStack{
-            Text("Dashboard")
-                .font(.largeTitle)
-            
-            Button("Log out") {
+        NavigationStack{
+            Button("Sign Out"){
                 firebaseManager.signOut()
             }
-            .buttonStyle(.borderedProminent)
+            .navigationTitle("Dashboard")
+            .navigationSubtitle("Here are your stats")
+            
         }
+        
         
         
     }
 }
+
+#Preview {
+    DashboardView(showDashboard: .constant(true))
+}
+
