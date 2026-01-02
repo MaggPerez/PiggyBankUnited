@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         if authManager.isAuthenticated {
             //dashboard view
-            DashboardView(showDashboard: $authManager.isAuthenticated)
+            MainContentView(showMainContent: $authManager.isAuthenticated)
         }
         else if showSignUpView {
             //sign up view
