@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @Binding var showDashboard: Bool
-    @ObservedObject var firebaseManager = FirebaseAuthManager()
-    
     var body: some View {
         NavigationStack{
-            Button("Sign Out"){
-                firebaseManager.signOut()
+            VStack {
+                Text("Welcome to Dashboard")
             }
             .navigationTitle("Dashboard")
-            .navigationSubtitle("Here are your stats")
+
             
         }
         
@@ -26,7 +23,7 @@ struct DashboardView: View {
     }
 }
 
-#Preview {
-    DashboardView(showDashboard: .constant(true))
-}
+
+
+
 
