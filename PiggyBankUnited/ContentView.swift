@@ -43,8 +43,8 @@ struct LoginView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: "globe")
-                .imageScale(.large)
+            Image(systemName: "banknote")
+                .font(.system(size: 60))
                 .foregroundStyle(.tint)
             Text("Piggy Bank United")
                 .font(.largeTitle)
@@ -112,8 +112,8 @@ struct SignUpView: View {
     var body: some View {
         
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
+            Image(systemName: "banknote")
+                .font(.system(size: 60))
                 .foregroundStyle(.tint)
             Text("PiggyBankUnited")
                 .font(.largeTitle)
