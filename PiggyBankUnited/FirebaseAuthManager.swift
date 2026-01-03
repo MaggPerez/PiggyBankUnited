@@ -69,4 +69,13 @@ class FirebaseAuthManager: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+    
+    
+    func getUserEmail() -> String? {
+        guard let user = Auth.auth().currentUser else {
+            errorMessage = "No user is currently signed in"
+            return nil
+        }
+        return user.email
+    }
 }

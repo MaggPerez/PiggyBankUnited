@@ -9,21 +9,21 @@ import SwiftUI
 
 struct MainContentView: View {
     @Binding var showMainContent: Bool
-    @ObservedObject var firebaseAuthManager = FirebaseAuthManager()
-    
+    @ObservedObject var firebaseAuthManager: FirebaseAuthManager
+
     var body: some View {
         TabView {
-            DashboardView()
+            DashboardView(firebaseAuthManager: firebaseAuthManager)
                 .tabItem {
                     Label("Dashboard", systemImage: "house.fill")
                 }
-            
-            ProfileView()
+
+            ProfileView(firebaseAuthManager: firebaseAuthManager)
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
-            
-            SettingsView(firebaseAuthManager: FirebaseAuthManager())
+
+            SettingsView(firebaseAuthManager: firebaseAuthManager)
                 .tabItem{
                     Label("Settings", systemImage: "gear")
                 }
@@ -33,5 +33,5 @@ struct MainContentView: View {
 
 
 #Preview {
-    MainContentView(showMainContent: .constant(true))
+    MainContentView(showMainContent: .constant(true), firebaseAuthManager: FirebaseAuthManager())
 }

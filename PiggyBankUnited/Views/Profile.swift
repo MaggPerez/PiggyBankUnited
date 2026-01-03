@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @ObservedObject var firebaseAuthManager: FirebaseAuthManager
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -16,4 +18,8 @@ struct ProfileView: View {
             .navigationTitle("Profile")
         }
     }
+}
+
+#Preview {
+    ProfileView(firebaseAuthManager: FirebaseAuthManager())
 }

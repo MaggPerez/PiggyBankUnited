@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         if authManager.isAuthenticated {
             //dashboard view
-            MainContentView(showMainContent: $authManager.isAuthenticated)
+            MainContentView(showMainContent: $authManager.isAuthenticated, firebaseAuthManager: authManager)
         }
         else if showSignUpView {
             //sign up view
@@ -111,11 +111,11 @@ struct SignUpView: View {
 
     var body: some View {
         
-        VStack {
+        VStack(spacing: 20) {
             Image(systemName: "banknote")
                 .font(.system(size: 60))
                 .foregroundStyle(.tint)
-            Text("PiggyBankUnited")
+            Text("Piggy Bank United")
                 .font(.largeTitle)
                 .bold()
             

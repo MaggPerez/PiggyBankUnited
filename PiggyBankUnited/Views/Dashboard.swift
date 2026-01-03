@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @ObservedObject var firebaseAuthManager: FirebaseAuthManager
+
     var body: some View {
         NavigationStack{
             VStack {
-                Text("Welcome to Dashboard")
+                Text("Welcome User")
             }
             .navigationTitle("Dashboard")
-
-            
         }
-        
-        
-        
     }
 }
+
+#Preview {
+    DashboardView(firebaseAuthManager: FirebaseAuthManager())
+}
+
+
 
 
 

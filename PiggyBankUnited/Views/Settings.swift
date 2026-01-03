@@ -9,19 +9,21 @@ import SwiftUI
 
 
 struct SettingsView: View {
-    @ObservedObject var firebaseAuthManager = FirebaseAuthManager()
-    
+    @ObservedObject var firebaseAuthManager: FirebaseAuthManager
+
     var body: some View {
         NavigationStack {
-            
             VStack {
                 Button("Sign Out") {
                     firebaseAuthManager.signOut()
                 }
             }
-            
             .navigationTitle("Settings")
         }
     }
+}
+
+#Preview {
+    SettingsView(firebaseAuthManager: FirebaseAuthManager())
 }
 
