@@ -23,21 +23,7 @@ struct DashboardView: View {
 }
 
 #Preview {
-    // Create a mock FirebaseAuthManager for preview
-    class MockFirebaseAuthManager: FirebaseAuthManager {
-        let username = ""
-        let sampleEmail = "preview@gmail.com"
-        override func getUserEmail() -> String? {
-            return trimEmailDomain(email: sampleEmail)
-        }
-        
-        override init() {
-            super.init()
-            self.isAuthenticated = true
-        }
-    }
-    
-    return DashboardView(firebaseAuthManager: MockFirebaseAuthManager())
+    DashboardView(firebaseAuthManager: .preview)
 }
 
 func trimEmailDomain(email: String) -> String {

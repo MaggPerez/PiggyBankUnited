@@ -24,6 +24,6 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView(firebaseAuthManager: FirebaseAuthManager())
+    SettingsView(firebaseAuthManager: .preview)
 }
 

@@ -21,5 +21,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(firebaseAuthManager: FirebaseAuthManager())
+    ProfileView(firebaseAuthManager: .preview)
 }

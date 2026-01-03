@@ -33,5 +33,5 @@ struct MainContentView: View {
 
 
 #Preview {
-    MainContentView(showMainContent: .constant(true), firebaseAuthManager: FirebaseAuthManager())
+    MainContentView(showMainContent: .constant(true), firebaseAuthManager: .preview)
 }

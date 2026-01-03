@@ -7,19 +7,38 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseCore
 import Combine
 
 class FirebaseAuthManager: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String?
-    
-    init() {
+    private var isPreviewMode: Bool = false
+
+    init(isPreview: Bool = false) {
+        self.isPreviewMode = isPreview
+
+        // Skip Firebase calls in preview mode to avoid timeouts
+        if isPreview {
+            self.isAuthenticated = false
+            return
+        }
+
         //check if user is already signed in
         self.isAuthenticated = Auth.auth().currentUser != nil
-        
+
         //listen for auth state changes
         Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.isAuthenticated = user != nil}
+    }
+
+    
+    
+    // MARK: - Preview Helper
+    /// Returns a FirebaseAuthManager instance configured for SwiftUI previews
+    /// This instance won't connect to Firebase to avoid preview timeouts
+    static var preview: FirebaseAuthManager {
+        return FirebaseAuthManager(isPreview: true)
     }
     
     /**
@@ -72,6 +91,11 @@ class FirebaseAuthManager: ObservableObject {
     
     
     func getUserEmail() -> String? {
+        // Return mock data in preview mode
+        if isPreviewMode {
+            return "preview@example.com"
+        }
+
         guard let user = Auth.auth().currentUser else {
             errorMessage = "No user is currently signed in"
             return nil
