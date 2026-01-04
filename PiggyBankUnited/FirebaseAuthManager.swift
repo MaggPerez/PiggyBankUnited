@@ -120,6 +120,10 @@ class FirebaseAuthManager: ObservableObject {
         return user.email
     }
     
+    
+    /**
+     function to deposit amount
+     */
     func depositAmount(amount: Double) async {
         //checking if the user is authenticated
         guard let currentUser = Auth.auth().currentUser else {
@@ -139,6 +143,7 @@ class FirebaseAuthManager: ObservableObject {
                 let currentBalance = document.data()?["balance"] as? Double ?? 0.0
                 let newBalance = currentBalance + amount
                 
+                //updating balance
                 try await docRef.updateData([
                     "balance": newBalance
                 ])
@@ -156,5 +161,84 @@ class FirebaseAuthManager: ObservableObject {
             errorMessage = "Error updating balance: \(error.localizedDescription)"
             print("Error adding document: \(error)")
         }
+    }
+    
+    
+    /**
+     function to withdraw
+     */
+    func withdrawAmount(amount: Double) async {
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "User is not authenticated"
+            return
+        }
+        
+        let docRef = db.collection("users").document(currentUser.uid)
+        
+        //subtracting user's withdraw amount to db
+        do {
+            let document = try await docRef.getDocument()
+            
+            //checking if the user already exists in db
+            if document.exists {
+                //get current balance from user
+                let currentBalance = document.data()?["balance"] as? Double ?? 0.0
+                let newBalance = currentBalance - amount
+                
+                //updating balance
+                try await docRef.updateData([
+                    "balance": newBalance
+                ])
+                print("Added \(amount) to existing balance")
+            }
+            else {
+                //adding new user to the db
+                try await db.collection("users").document(currentUser.uid).setData([
+                    "balance": amount
+                ])
+                print("New user created with initial balance: \(amount)")
+            }
+            
+        } catch {
+            errorMessage = "Error updating balance: \(error.localizedDescription)"
+            print("Error adding document: \(error)")
+        }
+        
+        
+    }
+    
+    func getUserBalance() async -> Double {
+        if (isPreviewMode) {
+            return 100.00
+        }
+        
+        var currentBalance: Double = 0.0
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "User is not authenticated"
+            return 0.0
+        }
+        
+        let docRef = db.collection("users").document(currentUser.uid)
+        
+        
+        do {
+            let document = try await docRef.getDocument()
+            
+            //checking if user balance exists
+            if document.exists {
+                currentBalance = document.data()?["balance"] as? Double ?? 0.0
+            }
+            
+        }
+        catch {
+            errorMessage = "Error updating balance: \(error.localizedDescription)"
+            print("Error adding document: \(error)")
+            
+            return 0.0
+        }
+        
+        //returns current balance
+        return currentBalance
+        
     }
 }

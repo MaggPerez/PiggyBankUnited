@@ -14,7 +14,7 @@ struct CheckingsView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 8) {
                 //banner
-                BannerView()
+                BannerView(firebaseAuthManager: firebaseAuthManager)
 
                 
                 //options
@@ -57,15 +57,29 @@ struct CheckingsView: View {
 
 
 struct BannerView: View {
+    @ObservedObject var firebaseAuthManager: FirebaseAuthManager
+    @State private var balance: Double = 0.0
+    @State private var isLoading: Bool = true
+    
     var body: some View {
         VStack(spacing: 8){
             
-            Text("$0")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-                .bold()
+            //loading
+            if isLoading {
+                Text("Loading")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .bold()
+            }
+            else {
+                //user's balance
+                Text("$\(String(format: "%.2f", balance))")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .bold()
+            }
                 
-            
+            //available balance
             Text("Available Balance")
                 .foregroundColor(.white)
                 .bold()
@@ -75,10 +89,29 @@ struct BannerView: View {
         .padding(.vertical, 20)
         .frame(maxWidth: .infinity, minHeight: 120)
         .background(Color.blue)
+        //fetching user's balance
+        .task {
+            await loadBalance()
+        }
+        //refreshing user's balance
+        .refreshable {
+            await loadBalance()
+        }
         
         
     }
+    
+    /**
+     function to load user's balance
+     */
+    private func loadBalance() async {
+        isLoading = true
+        balance = await firebaseAuthManager.getUserBalance()
+        isLoading = false
+    }
 }
+
+
 
 struct OptionsView: View {
     let itemName: String
@@ -171,7 +204,12 @@ struct CustomTextField: View {
                 
                 //MARK: firebase logic go here
                 Task {
-                    await firebaseAuthManager.depositAmount(amount: Double(amount) ?? 0.0)
+                    if(segmentationSelection.rawValue == "Deposit") {
+                        await firebaseAuthManager.depositAmount(amount: Double(amount) ?? 0.0)
+                    }
+                    else {
+                        await firebaseAuthManager.withdrawAmount(amount: Double(amount) ?? 0.0)
+                    }
                 }
             }
             .font(.headline)
