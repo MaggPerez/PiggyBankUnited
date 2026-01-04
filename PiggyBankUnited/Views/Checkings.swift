@@ -13,9 +13,12 @@ struct CheckingsView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 8) {
+                //banner
                 BannerView()
 
-                VStack {
+                
+                //options
+                VStack(spacing: 40) {
                     LazyVGrid(columns: [
                         GridItem(.flexible()),
                         GridItem(.flexible()),
@@ -31,10 +34,14 @@ struct CheckingsView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(.systemGray6))
+                            .fill(Color(.white))
                             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                             .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: 1)
                     )
+                    
+                    
+                    //textfields to deposit and withdraw
+                    CustomTextField()
                     
                     
                 }
@@ -87,6 +94,39 @@ struct OptionsView: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
+        
+    }
+}
+
+
+struct CustomTextField: View {
+    @State private var amount: String = ""
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            TextField("Enter amount", text: $amount)
+                .keyboardType(.numberPad)
+                .padding(.vertical)
+                .padding(.horizontal, 24)
+                .background(
+                    Color(UIColor.systemGray6)
+                )
+                .clipShape(Capsule(style: .continuous))
+                .overlay(
+                    Capsule(style: .continuous)
+                        .stroke(Color.black, lineWidth: 0.1)
+                )
+                    
+                
+            
+            //filtering non-digit chars
+                .onChange(of: amount) { oldValue, newValue in
+                    let filtered = newValue.filter { $0.isNumber }
+                    if filtered != newValue {
+                        self.amount = filtered
+                    }
+                }
+        }
         
     }
 }
