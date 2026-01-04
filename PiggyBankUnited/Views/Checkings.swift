@@ -59,10 +59,11 @@ struct CheckingsView: View {
 struct BannerView: View {
     @ObservedObject var firebaseAuthManager: FirebaseAuthManager
     @State private var balance: Double = 0.0
-    @State private var isLoading: Bool = true
+    @State private var isLoading: Bool = false
     
     var body: some View {
         VStack(spacing: 8){
+            
             
             //loading
             if isLoading {
@@ -73,7 +74,7 @@ struct BannerView: View {
             }
             else {
                 //user's balance
-                Text("$\(String(format: "%.2f", balance))")
+                Text("$\(String(format: "%.2f", firebaseAuthManager.currentBalance))")
                     .font(.largeTitle)
                     .foregroundColor(.white)
                     .bold()
@@ -89,26 +90,22 @@ struct BannerView: View {
         .padding(.vertical, 20)
         .frame(maxWidth: .infinity, minHeight: 120)
         .background(Color.blue)
-        //fetching user's balance
         .task {
-            await loadBalance()
+            await firebaseAuthManager.getUserBalance()
         }
-        //refreshing user's balance
-        .refreshable {
-            await loadBalance()
-        }
+
         
         
     }
     
-    /**
-     function to load user's balance
-     */
-    private func loadBalance() async {
-        isLoading = true
-        balance = await firebaseAuthManager.getUserBalance()
-        isLoading = false
-    }
+//    /**
+//     function to load user's balance
+//     */
+//    private func loadBalance() async {
+//        isLoading = true
+//        balance = await firebaseAuthManager.getUserBalance()
+//        isLoading = false
+//    }
 }
 
 
@@ -202,7 +199,6 @@ struct CustomTextField: View {
             
             Button(segmentationSelection.rawValue) {
                 
-                //MARK: firebase logic go here
                 Task {
                     if(segmentationSelection.rawValue == "Deposit") {
                         await firebaseAuthManager.depositAmount(amount: Double(amount) ?? 0.0)

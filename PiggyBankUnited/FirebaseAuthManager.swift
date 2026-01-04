@@ -15,6 +15,7 @@ import FirebaseFirestore
 class FirebaseAuthManager: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String?
+    @Published var currentBalance: Double = 0.0
     private var isPreviewMode: Bool = false
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     private let db = Firestore.firestore()
@@ -37,6 +38,8 @@ class FirebaseAuthManager: ObservableObject {
 
         //check if user is already signed in
         self.isAuthenticated = Auth.auth().currentUser != nil
+        
+        //get user's balance
 
         //listen for auth state changes
         authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
@@ -147,6 +150,10 @@ class FirebaseAuthManager: ObservableObject {
                 try await docRef.updateData([
                     "balance": newBalance
                 ])
+                
+                //updating UI
+                self.currentBalance = newBalance
+                
                 print("Added \(amount) to existing balance")
             }
             else {
@@ -189,6 +196,10 @@ class FirebaseAuthManager: ObservableObject {
                 try await docRef.updateData([
                     "balance": newBalance
                 ])
+                
+                //updating UI
+                self.currentBalance = newBalance
+                
                 print("Added \(amount) to existing balance")
             }
             else {
@@ -207,15 +218,15 @@ class FirebaseAuthManager: ObservableObject {
         
     }
     
-    func getUserBalance() async -> Double {
+    func getUserBalance() async {
         if (isPreviewMode) {
-            return 100.00
+            return self.currentBalance = 100.00
         }
         
         var currentBalance: Double = 0.0
         guard let currentUser = Auth.auth().currentUser else {
             errorMessage = "User is not authenticated"
-            return 0.0
+            return self.currentBalance = 0.0
         }
         
         let docRef = db.collection("users").document(currentUser.uid)
@@ -227,6 +238,7 @@ class FirebaseAuthManager: ObservableObject {
             //checking if user balance exists
             if document.exists {
                 currentBalance = document.data()?["balance"] as? Double ?? 0.0
+                self.currentBalance = currentBalance
             }
             
         }
@@ -234,11 +246,9 @@ class FirebaseAuthManager: ObservableObject {
             errorMessage = "Error updating balance: \(error.localizedDescription)"
             print("Error adding document: \(error)")
             
-            return 0.0
+            self.currentBalance = 0.0
         }
         
-        //returns current balance
-        return currentBalance
         
     }
 }
