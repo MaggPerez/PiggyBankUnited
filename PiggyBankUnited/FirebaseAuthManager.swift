@@ -135,19 +135,25 @@ class FirebaseAuthManager: ObservableObject {
             
             //checking if the user already exists in db
             if document.exists {
+                //get current balance from user
+                let currentBalance = document.data()?["balance"] as? Double ?? 0.0
+                let newBalance = currentBalance + amount
+                
                 try await docRef.updateData([
-                    "balance": amount
+                    "balance": newBalance
                 ])
+                print("Added \(amount) to existing balance")
             }
             else {
                 //adding new user to the db
                 try await db.collection("users").document(currentUser.uid).setData([
                     "balance": amount
                 ])
-                print("Document added with ID: \(currentUser.uid)")
+                print("New user created with initial balance: \(amount)")
             }
             
         } catch {
+            errorMessage = "Error updating balance: \(error.localizedDescription)"
             print("Error adding document: \(error)")
         }
     }
