@@ -41,7 +41,7 @@ struct CheckingsView: View {
                     
                     
                     //textfields to deposit and withdraw
-                    CustomTextField()
+                    CustomTextField(firebaseAuthManager: firebaseAuthManager)
                     
                     
                 }
@@ -100,6 +100,7 @@ struct OptionsView: View {
 
 
 struct CustomTextField: View {
+    @ObservedObject var firebaseAuthManager: FirebaseAuthManager
     enum TransactionSection: String, CaseIterable {
         case deposit = "Deposit"
         case withdraw = "Withdraw"
@@ -169,6 +170,9 @@ struct CustomTextField: View {
             Button(segmentationSelection.rawValue) {
                 
                 //MARK: firebase logic go here
+                Task {
+                    await firebaseAuthManager.depositAmount(amount: Double(amount) ?? 0.0)
+                }
             }
             .font(.headline)
             .foregroundColor(.white)
@@ -180,6 +184,7 @@ struct CustomTextField: View {
         }
         
     }
+    
 }
 
 

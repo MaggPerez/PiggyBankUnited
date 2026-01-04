@@ -9,12 +9,17 @@ import Foundation
 import FirebaseAuth
 import FirebaseCore
 import Combine
+import FirebaseFirestore
+
 
 class FirebaseAuthManager: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String?
     private var isPreviewMode: Bool = false
     private var authStateHandle: AuthStateDidChangeListenerHandle?
+    private let db = Firestore.firestore()
+
+    
 
     init(isPreview: Bool = false) {
         self.isPreviewMode = isPreview
@@ -23,6 +28,11 @@ class FirebaseAuthManager: ObservableObject {
         if isPreview {
             self.isAuthenticated = false
             return
+        }
+        
+        //configure firebase if anot already configured
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
         }
 
         //check if user is already signed in
@@ -108,5 +118,37 @@ class FirebaseAuthManager: ObservableObject {
             return nil
         }
         return user.email
+    }
+    
+    func depositAmount(amount: Double) async {
+        //checking if the user is authenticated
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "No user is currently signed in"
+            return
+        }
+        
+        let docRef = db.collection("users").document(currentUser.uid)
+        
+        //adding user's deposit amount to db
+        do {
+            let document = try await docRef.getDocument()
+            
+            //checking if the user already exists in db
+            if document.exists {
+                try await docRef.updateData([
+                    "balance": amount
+                ])
+            }
+            else {
+                //adding new user to the db
+                try await db.collection("users").document(currentUser.uid).setData([
+                    "balance": amount
+                ])
+                print("Document added with ID: \(currentUser.uid)")
+            }
+            
+        } catch {
+            print("Error adding document: \(error)")
+        }
     }
 }
