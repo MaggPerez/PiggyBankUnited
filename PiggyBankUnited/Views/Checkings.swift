@@ -100,10 +100,52 @@ struct OptionsView: View {
 
 
 struct CustomTextField: View {
+    enum TransactionSection: String, CaseIterable {
+        case deposit = "Deposit"
+        case withdraw = "Withdraw"
+        
+        var icon: String {
+            switch self {
+            case .deposit:
+                return "plus.circle.fill"
+                
+            case .withdraw:
+                return "minus.circle.fill"
+            }
+        }
+        
+        var color: Color {
+            switch self {
+            case .deposit:
+                return .green
+            case .withdraw:
+                return .red
+            }
+        }
+        
+        
+    }
+    @State var segmentationSelection: TransactionSection = .deposit
     @State private var amount: String = ""
+    
+    
     
     var body: some View {
         VStack(spacing: 20) {
+            //segmentation selection
+            Picker("", selection: $segmentationSelection) {
+                ForEach(TransactionSection.allCases, id: \.self) {option in
+                    //displays segments such as Deposit and Withdraw
+                    Text(
+                        option.rawValue
+                    )
+                    
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            
+
+            //textfield
             TextField("Enter amount", text: $amount)
                 .keyboardType(.numberPad)
                 .padding(.vertical)
@@ -116,9 +158,6 @@ struct CustomTextField: View {
                     Capsule(style: .continuous)
                         .stroke(Color.black, lineWidth: 0.1)
                 )
-                    
-                
-            
             //filtering non-digit chars
                 .onChange(of: amount) { oldValue, newValue in
                     let filtered = newValue.filter { $0.isNumber }
@@ -126,10 +165,23 @@ struct CustomTextField: View {
                         self.amount = filtered
                     }
                 }
+            
+            Button(segmentationSelection.rawValue) {
+                
+                //MARK: firebase logic go here
+            }
+            .font(.headline)
+            .foregroundColor(.white)
+            .bold()
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+            .background(segmentationSelection.color)
+            .clipShape(Capsule(style: .continuous))
         }
         
     }
 }
+
 
 
 #Preview {
