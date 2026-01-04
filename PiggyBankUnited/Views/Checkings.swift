@@ -34,7 +34,7 @@ struct CheckingsView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(.white))
+                            .fill(Color(.systemGray6))
                             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                             .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: 1)
                     )
