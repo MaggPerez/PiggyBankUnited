@@ -14,6 +14,7 @@ class FirebaseAuthManager: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String?
     private var isPreviewMode: Bool = false
+    private var authStateHandle: AuthStateDidChangeListenerHandle?
 
     init(isPreview: Bool = false) {
         self.isPreviewMode = isPreview
@@ -28,8 +29,14 @@ class FirebaseAuthManager: ObservableObject {
         self.isAuthenticated = Auth.auth().currentUser != nil
 
         //listen for auth state changes
-        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+        authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.isAuthenticated = user != nil}
+    }
+
+    deinit {
+        if let handle = authStateHandle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
     }
 
     

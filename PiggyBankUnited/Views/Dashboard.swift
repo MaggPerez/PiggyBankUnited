@@ -29,7 +29,7 @@ struct DashboardView: View {
                     ], spacing: 16) {
                         //checkings
                         
-                        NavigationLink(destination: CheckingsView(firebaseAuthManager: FirebaseAuthManager())){
+                        NavigationLink(destination: CheckingsView(firebaseAuthManager: firebaseAuthManager)){
                             CardsView(
                                 title: "Checkings",
                                 description: "View your checking account",
