@@ -93,7 +93,7 @@ class FirebaseAuthManager: ObservableObject {
     func getUserEmail() -> String? {
         // Return mock data in preview mode
         if isPreviewMode {
-            return "preview@example.com"
+            return "user@example.com"
         }
 
         guard let user = Auth.auth().currentUser else {

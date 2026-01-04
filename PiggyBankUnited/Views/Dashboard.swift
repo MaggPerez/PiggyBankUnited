@@ -28,20 +28,25 @@ struct DashboardView: View {
                         GridItem(.flexible(), spacing: 16)
                     ], spacing: 16) {
                         //checkings
-                        CardsView(
-                            title: "Checkings",
-                            description: "View your checking account",
-                            color: .blue,
-                            icon: "dollarsign.circle.fill"
-                        )
+                        
+                        NavigationLink(destination: CheckingsView(firebaseAuthManager: FirebaseAuthManager())){
+                            CardsView(
+                                title: "Checkings",
+                                description: "View your checking account",
+                                color: .blue,
+                                icon: "dollarsign.circle.fill"
+                            )
+                        }
 
-                        //savings
-                        CardsView(
-                            title: "Savings",
-                            description: "Track your savings",
-                            color: .green,
-                            icon: "banknote.fill"
-                        )
+                        NavigationLink(destination: SavingsView()){
+                            //savings
+                            CardsView(
+                                title: "Savings",
+                                description: "Track your savings",
+                                color: .green,
+                                icon: "banknote.fill"
+                            )
+                        }
 
                         //cd
                         CardsView(
