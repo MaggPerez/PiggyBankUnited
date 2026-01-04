@@ -39,7 +39,6 @@ class FirebaseAuthManager: ObservableObject {
         //check if user is already signed in
         self.isAuthenticated = Auth.auth().currentUser != nil
         
-        //get user's balance
 
         //listen for auth state changes
         authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in

@@ -94,18 +94,7 @@ struct BannerView: View {
             await firebaseAuthManager.getUserBalance()
         }
 
-        
-        
     }
-    
-//    /**
-//     function to load user's balance
-//     */
-//    private func loadBalance() async {
-//        isLoading = true
-//        balance = await firebaseAuthManager.getUserBalance()
-//        isLoading = false
-//    }
 }
 
 
