@@ -38,7 +38,7 @@ struct DashboardView: View {
                             )
                         }
 
-                        NavigationLink(destination: SavingsView()){
+                        NavigationLink(destination: SavingsView(firebaseAuthManager: firebaseAuthManager)){
                             //savings
                             CardsView(
                                 title: "Savings",

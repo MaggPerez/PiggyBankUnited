@@ -14,7 +14,7 @@ struct CheckingsView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 8) {
                 //banner
-                BannerView(firebaseAuthManager: firebaseAuthManager)
+                BannerView(firebaseAuthManager: firebaseAuthManager, color: .blue)
 
                 
                 //options
@@ -55,11 +55,19 @@ struct CheckingsView: View {
     }
 }
 
+//TODO: figure out how to dymanically change the banner view balance depending on if the user is on checkings, or savings, etc
 
+//TODO: figure out how to dynamically change the deposit and withdraw to the corresponding account. Make sure savings transactions don't get into checkings account if that makes sense
+
+//TODO: see how you can optimize the code
+
+//TODO: Improve UI
 struct BannerView: View {
     @ObservedObject var firebaseAuthManager: FirebaseAuthManager
     @State private var balance: Double = 0.0
     @State private var isLoading: Bool = false
+    
+    let color: Color
     
     var body: some View {
         VStack(spacing: 8){
@@ -89,7 +97,7 @@ struct BannerView: View {
         }
         .padding(.vertical, 20)
         .frame(maxWidth: .infinity, minHeight: 120)
-        .background(Color.blue)
+        .background(color)
         .task {
             await firebaseAuthManager.getUserBalance()
         }
