@@ -60,21 +60,37 @@ class FirebaseAuthManager: ObservableObject {
         return FirebaseAuthManager(isPreview: true)
     }
     
+    
+    
     /**
      funciton to sign up
      */
-    func signUp(email: String, password: String){
+    func signUp(email: String, password: String, name: String){
         errorMessage = nil
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            
             if let error = error {
-                self?.errorMessage = error.localizedDescription
-                
+                self.errorMessage = error.localizedDescription
                 return
             }
-            // isAuthenticated will be set by the auth state listener
+            
+            // Now that user creation succeeded, add user's extra credentials
+            guard let currentUser = authResult?.user else {
+                self.errorMessage = "Failed to get created user"
+                return
+            }
+            
+            // Set user data in Firestore
+            self.db.collection("users").document(currentUser.uid).setData([
+                "name": name
+            ]) { error in
+                if let error = error {
+                    self.errorMessage = "Error saving user data: \(error.localizedDescription)"
+                }
+            }
         }
-        
     }
     
     
@@ -217,6 +233,20 @@ class FirebaseAuthManager: ObservableObject {
         
         
     }
+    
+    
+    
+    /**
+     function to get user's account through firestore db
+     */
+    func getUserFirestoreAccount() -> DocumentReference? {
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "User is not authenticated"
+            return nil
+        }
+        return db.collection("users").document(currentUser.uid)
+    }
+    
     
     
     /**

@@ -59,7 +59,7 @@ struct LoginView: View {
                 
                 // Logo and Title
                 VStack(spacing: 16) {
-                    Image(systemName: "building.columns.fill")
+                    Image("piggy")
                         .font(.system(size: 70))
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
@@ -169,6 +169,7 @@ struct SignUpView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var fullName: String = ""
     
     var body: some View {
         ZStack {
@@ -188,7 +189,7 @@ struct SignUpView: View {
                 
                 // Logo and Title
                 VStack(spacing: 16) {
-                    Image(systemName: "building.columns.fill")
+                    Image("piggy")
                         .font(.system(size: 70))
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
@@ -212,6 +213,18 @@ struct SignUpView: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
+                        
+                        //full name textfield
+                        TextField("Full Name", text: $fullName)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color(.systemGray4), lineWidth: 1)
+                            )
                         
                         //create email textfield
                         TextField("Create Email", text: $email)
@@ -242,7 +255,7 @@ struct SignUpView: View {
                         
                         // Sign up button
                         Button(action: {
-                            authManager.signUp(email: email, password: password)
+                            authManager.signUp(email: email, password: password, name: fullName)
                         }) {
                             Text("Sign Up")
                                 .font(.system(size: 18, weight: .semibold))
