@@ -41,7 +41,7 @@ struct SavingsView: View {
                     
                     
                     //textfields to deposit and withdraw
-                    CustomTextField(firebaseAuthManager: firebaseAuthManager, userAccount: "Savings")
+                    TransactionHandler(firebaseAuthManager: firebaseAuthManager, userAccount: "Savings")
                     
                     
                 }
