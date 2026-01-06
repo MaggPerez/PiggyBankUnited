@@ -14,7 +14,7 @@ struct SavingsView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 8) {
                 //banner
-                BannerView(firebaseAuthManager: firebaseAuthManager, color: .green)
+                BannerView(firebaseAuthManager: firebaseAuthManager, color: .green, userAccount: "Savings")
 
                 
                 //options
@@ -41,7 +41,7 @@ struct SavingsView: View {
                     
                     
                     //textfields to deposit and withdraw
-                    CustomTextField(firebaseAuthManager: firebaseAuthManager)
+                    CustomTextField(firebaseAuthManager: firebaseAuthManager, userAccount: "Savings")
                     
                     
                 }

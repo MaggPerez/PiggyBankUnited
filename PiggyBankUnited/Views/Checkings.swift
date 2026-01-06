@@ -14,7 +14,7 @@ struct CheckingsView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 8) {
                 //banner
-                BannerView(firebaseAuthManager: firebaseAuthManager, color: .blue)
+                BannerView(firebaseAuthManager: firebaseAuthManager, color: .blue, userAccount: "Checkings")
 
                 
                 //options
@@ -41,7 +41,7 @@ struct CheckingsView: View {
                     
                     
                     //textfields to deposit and withdraw
-                    CustomTextField(firebaseAuthManager: firebaseAuthManager)
+                    CustomTextField(firebaseAuthManager: firebaseAuthManager, userAccount: "Checkings")
                     
                     
                 }
@@ -55,9 +55,7 @@ struct CheckingsView: View {
     }
 }
 
-//TODO: figure out how to dymanically change the banner view balance depending on if the user is on checkings, or savings, etc
 
-//TODO: figure out how to dynamically change the deposit and withdraw to the corresponding account. Make sure savings transactions don't get into checkings account if that makes sense
 
 //TODO: see how you can optimize the code
 
@@ -68,6 +66,7 @@ struct BannerView: View {
     @State private var isLoading: Bool = false
     
     let color: Color
+    let userAccount: String
     
     var body: some View {
         VStack(spacing: 8){
@@ -99,7 +98,7 @@ struct BannerView: View {
         .frame(maxWidth: .infinity, minHeight: 120)
         .background(color)
         .task {
-            await firebaseAuthManager.getUserBalance()
+            await firebaseAuthManager.getUserBalance(account: userAccount)
         }
 
     }
@@ -128,6 +127,9 @@ struct OptionsView: View {
 
 struct CustomTextField: View {
     @ObservedObject var firebaseAuthManager: FirebaseAuthManager
+    let userAccount: String
+    
+    
     enum TransactionSection: String, CaseIterable {
         case deposit = "Deposit"
         case withdraw = "Withdraw"
@@ -198,10 +200,10 @@ struct CustomTextField: View {
                 
                 Task {
                     if(segmentationSelection.rawValue == "Deposit") {
-                        await firebaseAuthManager.depositAmount(amount: Double(amount) ?? 0.0)
+                        await firebaseAuthManager.depositAmount(amount: Double(amount) ?? 0.0, account: userAccount)
                     }
                     else {
-                        await firebaseAuthManager.withdrawAmount(amount: Double(amount) ?? 0.0)
+                        await firebaseAuthManager.withdrawAmount(amount: Double(amount) ?? 0.0, account: userAccount)
                     }
                 }
             }

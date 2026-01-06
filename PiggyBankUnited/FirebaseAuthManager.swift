@@ -126,7 +126,7 @@ class FirebaseAuthManager: ObservableObject {
     /**
      function to deposit amount
      */
-    func depositAmount(amount: Double) async {
+    func depositAmount(amount: Double, account: String) async {
         //checking if the user is authenticated
         guard let currentUser = Auth.auth().currentUser else {
             errorMessage = "No user is currently signed in"
@@ -142,12 +142,12 @@ class FirebaseAuthManager: ObservableObject {
             //checking if the user already exists in db
             if document.exists {
                 //get current balance from user
-                let currentBalance = document.data()?["balance"] as? Double ?? 0.0
+                let currentBalance = document.data()?[account] as? Double ?? 0.0
                 let newBalance = currentBalance + amount
                 
                 //updating balance
                 try await docRef.updateData([
-                    "balance": newBalance
+                    account: newBalance
                 ])
                 
                 //updating UI
@@ -170,10 +170,11 @@ class FirebaseAuthManager: ObservableObject {
     }
     
     
+    
     /**
      function to withdraw
      */
-    func withdrawAmount(amount: Double) async {
+    func withdrawAmount(amount: Double, account: String) async {
         guard let currentUser = Auth.auth().currentUser else {
             errorMessage = "User is not authenticated"
             return
@@ -187,13 +188,13 @@ class FirebaseAuthManager: ObservableObject {
             
             //checking if the user already exists in db
             if document.exists {
-                //get current balance from user
-                let currentBalance = document.data()?["balance"] as? Double ?? 0.0
+                //get current balance from user based on the account they're on "Checkings, Savings, etc..."
+                let currentBalance = document.data()?[account] as? Double ?? 0.0
                 let newBalance = currentBalance - amount
                 
                 //updating balance
                 try await docRef.updateData([
-                    "balance": newBalance
+                    account: newBalance
                 ])
                 
                 //updating UI
@@ -217,7 +218,11 @@ class FirebaseAuthManager: ObservableObject {
         
     }
     
-    func getUserBalance() async {
+    
+    /**
+     function that gets user's balance based on the account they're on
+     */
+    func getUserBalance(account: String) async {
         if (isPreviewMode) {
             return self.currentBalance = 100.00
         }
@@ -236,13 +241,13 @@ class FirebaseAuthManager: ObservableObject {
             
             //checking if user balance exists
             if document.exists {
-                currentBalance = document.data()?["balance"] as? Double ?? 0.0
+                currentBalance = document.data()?[account] as? Double ?? 0.0
                 self.currentBalance = currentBalance
             }
             
         }
         catch {
-            errorMessage = "Error updating balance: \(error.localizedDescription)"
+            errorMessage = "Error getting user's balance: \(error.localizedDescription)"
             print("Error adding document: \(error)")
             
             self.currentBalance = 0.0
