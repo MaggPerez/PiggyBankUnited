@@ -59,12 +59,14 @@ struct DashboardView: View {
                         }
 
                         //statements
-                        CardsView(
-                            title: "Statements",
-                            description: "View statements",
-                            color: .orange,
-                            icon: "doc.text.fill"
-                        )
+                        NavigationLink(destination: StatementsView(firebaseAuthManager: firebaseAuthManager)) {
+                            CardsView(
+                                title: "Statements",
+                                description: "View statements",
+                                color: .orange,
+                                icon: "doc.text.fill"
+                            )
+                        }
 
                         //transfers
                         CardsView(

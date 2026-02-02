@@ -20,6 +20,7 @@ class FirebaseAuthManager: ObservableObject {
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     private let db = Firestore.firestore()
 
+
     
 
     init(isPreview: Bool = false) {
@@ -219,7 +220,7 @@ class FirebaseAuthManager: ObservableObject {
                 
                 //updating UI
                 self.currentBalance = newBalance
-                await recordTransaction(account: account, amount: amount, transactionType: "Withdraw")
+                await recordTransaction(account: account, amount: amount, transactionType: "Withdrawal")
                 
                 print("Added \(amount) to existing balance")
             }
@@ -331,5 +332,56 @@ class FirebaseAuthManager: ObservableObject {
         formatter.dateFormat = "MM/dd/yyyy"
         
         return formatter.string(from: currentDate)
+    }
+    
+    func formatGivenDate(date: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        return formatter.date(from: date) ?? Date()
+    }
+    
+    
+    /**
+     function to get user's statement
+     */
+    func getUserStatement() async -> [Statement] {
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "User is not authenticated"
+            return []
+        }
+        
+        var fetchedStatements: [Statement] = []
+        
+        do {
+            let querySnapShot = try await db.collection("users").document(currentUser.uid).collection("statements").getDocuments()
+            
+            for document in querySnapShot.documents {
+                let data = document.data()
+                //parsing firestore data into Statement model
+                if let account = data["Account"] as? String,
+                   let amount = data["Amount"] as? Double,
+                   let transactionTypeString = data["Transaction"] as? String,
+                   let availableBalance = data["Available Balance"] as? Double,
+                   let dateString = data["Date"] as? String {
+                    
+                    //convert transaction string to enum
+                    let transactionType: TransactionType = transactionTypeString == "Deposit" ? .deposit : .withdrawal
+                    
+                    //parse data string
+                    let date = formatGivenDate(date: dateString)
+                    
+                    let statement = Statement(account: account, amount: amount, transaction: transactionType, availableBalance: availableBalance, date: date)
+                    
+                    fetchedStatements.append(statement)
+                }
+            }
+            
+        } catch {
+            errorMessage = "Error fetching statements: \(error.localizedDescription)"
+        }
+        
+        // Sort statements by date (newest first)
+        return fetchedStatements.sorted { $0.date > $1.date }
     }
 }
