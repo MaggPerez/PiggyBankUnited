@@ -61,6 +61,7 @@ class FirebaseAuthManager: ObservableObject {
     }
     
     
+    //MARK: - Signup/in functionalities
     
     /**
      funciton to sign up
@@ -139,6 +140,8 @@ class FirebaseAuthManager: ObservableObject {
     }
     
     
+    // MARK: - Transaction behaviors
+    
     /**
      function to deposit amount
      */
@@ -168,6 +171,7 @@ class FirebaseAuthManager: ObservableObject {
                 
                 //updating UI
                 self.currentBalance = newBalance
+                await recordTransaction(account: account, amount: amount, transactionType: "Deposit")
                 
                 print("Added \(amount) to existing balance")
             }
@@ -215,6 +219,7 @@ class FirebaseAuthManager: ObservableObject {
                 
                 //updating UI
                 self.currentBalance = newBalance
+                await recordTransaction(account: account, amount: amount, transactionType: "Withdraw")
                 
                 print("Added \(amount) to existing balance")
             }
@@ -284,5 +289,47 @@ class FirebaseAuthManager: ObservableObject {
         }
         
         
+    }
+    
+    
+    // MARK: - Recording Transactions
+    
+    
+    /**
+     function that sets statements for each transaction that user makes
+     */
+    func recordTransaction(account: String, amount: Double, transactionType: String) async {
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "User is not authenticated"
+            return
+        }
+        
+        
+        let currentDate = getCurrentDateFormatted()
+        
+        do {
+            try await db.collection("users").document(currentUser.uid).collection("statements").addDocument(data: [
+                "Account": account,
+                "Amount": amount,
+                "Transaction": transactionType,
+                "Available Balance": self.currentBalance,
+                "Date": currentDate
+            ])
+        } catch {
+            errorMessage = "Error adding document"
+        }
+    }
+    
+    
+    
+    /**
+     function to get current data with proper date format
+     */
+    func getCurrentDateFormatted() -> String {
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        return formatter.string(from: currentDate)
     }
 }
