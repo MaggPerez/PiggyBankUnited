@@ -32,7 +32,7 @@ struct DashboardView: View {
                         NavigationLink(destination: CheckingsView(firebaseAuthManager: firebaseAuthManager)){
                             CardsView(
                                 title: "Checkings",
-                                description: "View your checking account",
+                                description: "View your checkings",
                                 color: .blue,
                                 icon: "dollarsign.circle.fill"
                             )
@@ -49,12 +49,14 @@ struct DashboardView: View {
                         }
 
                         //cd
-                        CardsView(
-                            title: "CD Account",
-                            description: "Certificate of Deposit",
-                            color: .purple,
-                            icon: "chart.line.uptrend.xyaxis"
-                        )
+                        NavigationLink(destination: CDView(firebaseAuthManager: firebaseAuthManager)) {
+                            CardsView(
+                                title: "CD",
+                                description: "Certificate of Deposit",
+                                color: .purple,
+                                icon: "chart.line.uptrend.xyaxis"
+                            )
+                        }
 
                         //statements
                         CardsView(
