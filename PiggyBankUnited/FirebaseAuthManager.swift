@@ -346,6 +346,13 @@ class FirebaseAuthManager: ObservableObject {
      function to get user's statement
      */
     func getUserStatement() async -> [Statement] {
+        if (isPreviewMode) {
+            var previewStatements: [Statement] = []
+            let statement = Statement(account: "Checkings", amount: 150, transaction: TransactionType.deposit, availableBalance: 300, date: Date())
+            previewStatements.append(statement)
+            return previewStatements
+        }
+        
         guard let currentUser = Auth.auth().currentUser else {
             errorMessage = "User is not authenticated"
             return []
